@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-class App extends Component {
+
+class App extends React.Component {
   constructor(){
     super();
 
     this.state = {
-      monsters: [
-        {
-          name: 'Frankenstein',
-          id: 'arp1'
-        },
-        {
-          name: 'Dracula',
-          id: 'arp2'
-        },
-        {
-          name: 'Zombie',
-          id: 'arp3'
-        }
-      ]
+      monsters: []
     }
+  }
+
+  componentDidMount(){
+    fetch('http://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({ monsters: users }))
   }
 
   render() {
